@@ -35,7 +35,7 @@ router = APIRouter(tags=["login"])
 @router.post("/login/access-token")
 def login_access_token(
     session: SessionDep, form_data: Annotated[OAuth2PasswordRequestForm, Depends()]
-) -> Token:
+) -> JSONResponse:
     """
     OAuth2-compatible token login: get an access token for future requests (sent in an HTTP-only cookie)
     """
@@ -55,12 +55,21 @@ def login_access_token(
     expires_at = datetime.now(timezone.utc) + expires_delta
     expires_timestamp = int(expires_at.timestamp())
 
-    token = Token(
-        access_token=access_token,
+    response = JSONResponse(
+        content={"message": "Login successful"},
+    )
+    response.set_cookie(
+        key=settings.AUTH_COOKIE,
+        value=access_token,
+        httponly=True,
+        secure=settings.ENVIRONMENT == "production",
+        samesite="lax",
+        path="/",
+        max_age=int(expires_delta.total_seconds()),
         expires=expires_timestamp,
     )
 
-    return token
+    return response
 
 
 @router.post("/login/test-token", response_model=UserPublic)
