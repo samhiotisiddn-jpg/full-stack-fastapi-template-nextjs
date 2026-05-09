@@ -146,7 +146,7 @@ class Settings(BaseSettings):
     @computed_field  # type: ignore[prop-decorator]
     @property
     def emails_enabled(self) -> bool:
-        return bool(self.SMTP_HOST and self.EMAILS_FROM_EMAIL)
+        return bool(self.SMTP_HOST and (self.EMAILS_FROM_EMAIL or self.SMTP_USER))
 
     # ------- Validators -------
 
