@@ -19,7 +19,7 @@
     "@workspace/ui": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "lucide-react": "^0.562.0",
-    "next": "^16.1.1",
+    "next": "^16.2.6",
     "next-public-env": "^1.1.0",
     "next-themes": "^0.4.6",
     "object-treeify": "^5.0.1",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "@hey-api/openapi-ts": "0.88.0",
+    "@hey-api/openapi-ts": "0.97.3",
     "@types/node": "^25.0.3",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
